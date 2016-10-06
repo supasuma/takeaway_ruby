@@ -7,4 +7,9 @@ describe Menu do
   it 'has a list of dishes with prices' do
     expect(menu.dishes).to eq(dishes)
   end
+
+  it 'calculates a price' do
+    expect(menu.price(:chicken)).to eq(dishes[:chicken])
+  end
+
 end

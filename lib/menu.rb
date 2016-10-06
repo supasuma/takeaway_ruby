@@ -12,4 +12,8 @@ class Menu
     end.join(', ')
   end
 
+  def price(name)
+    dishes[name]
+  end
+
 end
