@@ -8,7 +8,11 @@ class Order
   end
 
   def add(dish, quantity)
-    dishes[dish] = quantity
+    if menu.has_dish?(dish)
+      dishes[dish] = quantity
+    else
+      raise "#{dish.capitalize} is not on the menu"
+    end
   end
 
   def total
