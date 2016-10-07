@@ -1,19 +1,21 @@
 require 'twilio-ruby'
+require 'dotenv'
+
+Dotenv.load
 
 class SMS
 
   TIME_FORMAT = "%H:%M"
 
-  def initialize(config, client: nil)
-    @config = config
-    @client = client || Twilio::REST::Client.new(config[:account_sid], config[:auth_token])
+  def initialize(client: nil)
+    @client = client || Twilio::REST::Client.new(ENV['ACCOUNT_SID'], ENV['AUTH_TOKEN'])
   end
 
   def deliver
     args = {
-      from: config[:from],
-      to: config[:to],
-      body: config[:body] % delivery_time
+      from: ENV['FROM'],
+      to: ENV['TO'],
+      body: ENV['BODY'] + delivery_time
     }
 
     messages.create(args)
